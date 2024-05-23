@@ -8,9 +8,9 @@ test("LOCQ_ValidHomeNav_Positive_01", async({page}) => {
     await navigationBar.goto();
     await navigationBar.homeBtn.click();
 
-    const aboutTextElement = await page.waitForSelector('.primary');
-    const aboutTextContent = await aboutTextElement.textContent();
-    expect(aboutTextContent).toContain('LOCQ it now,');
+    const textElement = await page.waitForSelector('.primary');
+    const textContent = await textElement.textContent();
+    expect(textContent).toContain('LOCQ it now,');
 });
 
 test("LOCQ_ValidAboutUsNav_Positive_02", async ({ page }) => {
@@ -18,9 +18,9 @@ test("LOCQ_ValidAboutUsNav_Positive_02", async ({ page }) => {
     await navigationBar.goto();
     await navigationBar.aboutUsBtn.click();   
 
-    const aboutTextElement = await page.waitForSelector('h1.heading');
-    const aboutTextContent = await aboutTextElement.textContent();
-    expect(aboutTextContent).toContain('About Us');
+    const textElement = await page.waitForSelector('h1.heading');
+    const textContent = await textElement.textContent();
+    expect(textContent).toContain('About Us');
 });
 
 test("LOCQ_ValidGettingStartedNav_Positive_03", async ({ page }) => {
@@ -28,9 +28,9 @@ test("LOCQ_ValidGettingStartedNav_Positive_03", async ({ page }) => {
     await navigationBar.goto();
     await navigationBar.gettingStartedBtn.click();   
 
-    const aboutTextElement = await page.waitForSelector('h3');
-    const aboutTextContent = await aboutTextElement.textContent();
-    expect(aboutTextContent).toContain('Getting Started');
+    const textElement = await page.waitForSelector('h3');
+    const textContent = await textElement.textContent();
+    expect(textContent).toContain('Getting Started');
 });
 
 test("LOCQ_ValidHelpCenterNav_Positive_04", async ({ page }) => {
@@ -46,9 +46,9 @@ test("LOCQ_ValidHelpCenterNav_Positive_04", async ({ page }) => {
     const page1 = await page1Promise;
 
     // Click on the text element with the expected text content
-    const aboutTextElement = await page1.waitForSelector('h1');
-    const aboutTextContent = await aboutTextElement.textContent();
-    expect(aboutTextContent).toBe('Hi, how can we help you?');
+    const textElement = await page1.waitForSelector('h1');
+    const textContent = await textElement.textContent();
+    expect(textContent).toBe('Hi, how can we help you?');
 });
 
 test("LOCQ_ValidPLBPortalNav_Positive_05", async ({ page }) => {
@@ -58,9 +58,9 @@ test("LOCQ_ValidPLBPortalNav_Positive_05", async ({ page }) => {
     await navigationBar.clickPLBPortal();   
     const page1 = await page1Promise;
 
-    const aboutTextElement = await page1.waitForSelector('h1');
-    const aboutTextContent = await aboutTextElement.textContent();
-    expect(aboutTextContent).toContain('Fleet Portal');
+    const textElement = await page1.waitForSelector('h1');
+    const textContent = await textElement.textContent();
+    expect(textContent).toContain('Fleet Portal');
 });
 
 /*Text value assertion of the available payment partners. Please create a separate .json file containing the available payment partners and
@@ -72,10 +72,10 @@ test("LOCQ_ValidPaymentPartners_Positive_06", async ({page}) => {
     await navigationBar.clickPaymentPartners();
     
     for (let i = 0; i < testdata.paymentPartners.length; i++) {
-        const aboutTextElement = await page.waitForSelector(`(//div[@class="partners-labels"]//span)[${i + 1}]`);
-        const aboutTextContent = await aboutTextElement.textContent();
+        const textElement = await page.waitForSelector(`(//div[@class="partners-labels"]//span)[${i + 1}]`);
+        const textContent = await textElement.textContent();
 
-        expect(aboutTextContent).toContain(testdata.paymentPartners[i]);
+        expect(textContent).toContain(testdata.paymentPartners[i]);
     };
 });
 
