@@ -18,7 +18,9 @@ test("LOCQ_FilterStations_Positive_01", async ({page}) => {
     await filter.isPriceLOCQForConsumerChecked();
     await filter.clickApplyFiltersBtn();
     await filter.page.waitForTimeout(3000);
-    for(let i = 0; i < 2; i++) {
+
+    const stations = await filter.page.locator('tbody').locator('tr').count();
+    for(let i = 0; i < stations; i++) {
         let stationNames = await filter.page.locator(`(//div[@class='station-list_stationLabel__1VCja'])[${i+1}]`).innerText();    
         stationNames = stationNames.split('\n')[0];
         console.log(stationNames);
@@ -29,18 +31,22 @@ test("LOCQ_FilterStations_Positive_01", async ({page}) => {
 in https://www.pricelocq.com/pricelocq-stations. Return the station names in an
 array.*/
 
-
-test("LOCQ_StationNamesInArray", async({page}) => {
-    const filter = new Filter(page);
+async function stationNamesInArray(page:any): Promise<string[]> {
     const stationArray: string[] = [];
+    const filter = new Filter(page);
     await page.goto('https://www.pricelocq.com/pricelocq-stations');
     for(let i = 0; i < 10; i++) {
-        let stationNames: string = await filter.page.locator(`(//div[@class='station-list_stationLabel__1VCja'])[${i+1}]`).innerText() as string;    
-    
+        let stationNames: string = await filter.page.locator(`(//div[@class='station-list_stationLabel__1VCja'])[${i+1}]`).innerText();    
         stationNames = stationNames.split('\n')[0];
         stationArray[i] = stationNames;
     }
-    console.log(stationArray);
+    return stationArray;
+};
+
+
+test("LOCQ_StationNamesInArray", async ({page}) => {
+    const stations = await stationNamesInArray(page);
+    console.log(stations);
 })
 
 

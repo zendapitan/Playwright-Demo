@@ -11,6 +11,7 @@ test("LOCQ_ValidHomeNav_Positive_01", async({page}) => {
     const textElement = await page.waitForSelector('.primary');
     const textContent = await textElement.textContent();
     expect(textContent).toContain('LOCQ it now,');
+    
 });
 
 test("LOCQ_ValidAboutUsNav_Positive_02", async ({ page }) => {
